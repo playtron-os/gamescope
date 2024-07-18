@@ -516,7 +516,7 @@ namespace GamescopeWSILayer {
 
       GamescopeWaylandObjects waylandObjects = GamescopeWaylandObjects::get(pCreateInfo->display);
       if (!waylandObjects.valid()) {
-        fprintf(stderr, "[Gamescope WSI] Failed to get Wayland objects 1\n");
+        fprintf(stderr, "[Gamescope WSI] Failed to get Wayland objects %s:%d\n", __FILE__, __LINE__);
         return VK_ERROR_SURFACE_LOST_KHR;
       }
 
@@ -760,7 +760,7 @@ namespace GamescopeWSILayer {
 
       GamescopeWaylandObjects waylandObjects = GamescopeWaylandObjects::get(gamescopeInstance->display);
       if (!waylandObjects.valid()) {
-        fprintf(stderr, "[Gamescope WSI] Failed to get Wayland objects 2\n");
+        fprintf(stderr, "[Gamescope WSI] Failed to get Wayland objects %s:%d\n", __FILE__, __LINE__);
         return VK_ERROR_SURFACE_LOST_KHR;
       }
 
