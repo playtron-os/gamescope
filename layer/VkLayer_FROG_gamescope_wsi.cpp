@@ -169,7 +169,13 @@ namespace GamescopeWSILayer {
       return waylandObjects;
     }
 
-    bool valid() const { return compositor && gamescopeSwapchainFactory; }
+    bool valid() const {
+      if(!compositor)
+        fprintf(stderr, "[Gamescope WSI] Invalid wayland objects (compositor null)\n");
+      if(!gamescopeSwapchainFactory)
+        fprintf(stderr, "[Gamescope WSI] Invalid wayland objects (swapchain factory null)\n");
+      return compositor && gamescopeSwapchainFactory; 
+    }
 
     static const wl_registry_listener s_registryListener;
   };
@@ -510,7 +516,7 @@ namespace GamescopeWSILayer {
 
       GamescopeWaylandObjects waylandObjects = GamescopeWaylandObjects::get(pCreateInfo->display);
       if (!waylandObjects.valid()) {
-        fprintf(stderr, "[Gamescope WSI] Failed to get Wayland objects\n");
+        fprintf(stderr, "[Gamescope WSI] Failed to get Wayland objects 1\n");
         return VK_ERROR_SURFACE_LOST_KHR;
       }
 
@@ -754,7 +760,7 @@ namespace GamescopeWSILayer {
 
       GamescopeWaylandObjects waylandObjects = GamescopeWaylandObjects::get(gamescopeInstance->display);
       if (!waylandObjects.valid()) {
-        fprintf(stderr, "[Gamescope WSI] Failed to get Wayland objects\n");
+        fprintf(stderr, "[Gamescope WSI] Failed to get Wayland objects 2\n");
         return VK_ERROR_SURFACE_LOST_KHR;
       }
 
